@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import loginImage from "../../assets/loo.jpg"; // ✅ Ensure this image path is correct
+import loginImage from "../../assets/loo.jpg"; 
 
 const Login = () => {
     const history = useHistory();

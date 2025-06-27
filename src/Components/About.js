@@ -3,9 +3,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import {FaUsers, FaHandshake, FaLightbulb, FaLaptopCode, FaChalkboardTeacher} from "react-icons/fa";
-import aboutImage from "../assets/kam.jpg"; // Replace with your actual image path
+import aboutImage from "../assets/kam.jpg"; 
 import devImage from "../assets/me.jpg";
-import {Link} from "react-router-dom"; //
+import {Link} from "react-router-dom"; 
 const About = () => {
     useEffect(() => {
         AOS.init({ duration: 1000 });
@@ -101,23 +101,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
-
-            {/*/!* Final CTA Section *!/*/}
-            {/*<div className="bg-indigo-900 text-white text-center py-20 px-4">*/}
-            {/*    <h2 className="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">*/}
-            {/*        Ready to grow your skills?*/}
-            {/*    </h2>*/}
-            {/*    <p className="text-lg md:text-xl mb-6" data-aos="fade-up" data-aos-delay="150">*/}
-            {/*        Join SkillSwap and become part of a thriving community that learns by sharing.*/}
-            {/*    </p>*/}
-            {/*    <Link*/}
-            {/*        to="/register"*/}
-            {/*        className="inline-block bg-white text-indigo-900 font-semibold py-3 px-8 rounded-full hover:bg-gray-100 transition"*/}
-            {/*    >*/}
-            {/*        Get Started*/}
-            {/*    </Link>*/}
-            {/*</div>*/}
-
+            
             {/* Team Section */}
             <div className="bg-gray-200 py-16 px-6 md:px-20 text-center">
                 <h2 className="text-3xl font-bold mb-10">Meet the Developer</h2>
@@ -137,20 +121,6 @@ const About = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Call-to-Action */}
-            {/*<div className="bg-indigo-800 text-white text-center py-16 px-4">*/}
-            {/*    <h2 className="text-2xl md:text-3xl font-bold mb-4" data-aos="zoom-in">Join the Movement</h2>*/}
-            {/*    <p className="text-lg md:text-xl mb-6" data-aos="zoom-in" data-aos-delay="100">*/}
-            {/*        Be a learner. Be a teacher. Be part of the SkillSwap community.*/}
-            {/*    </p>*/}
-            {/*    <a*/}
-            {/*        href="/register"*/}
-            {/*        className="inline-block bg-white text-indigo-800 font-semibold py-3 px-8 rounded-full hover:bg-gray-200 transition"*/}
-            {/*    >*/}
-            {/*        Get Started*/}
-            {/*    </a>*/}
-            {/*</div>*/}
         </div>
     );
 };

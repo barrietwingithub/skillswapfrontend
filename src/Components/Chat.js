@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5000'); // adjust if needed
+const socket = io('http://localhost:5000'); 
 
 const Chat = ({ currentUser, chatUsers }) => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
-    const [onlineUsers, setOnlineUsers] = useState([]); // list of online user IDs
+    const [onlineUsers, setOnlineUsers] = useState([]); 
     const messagesEndRef = useRef(null);
 
     // Scroll to bottom whenever messages update
