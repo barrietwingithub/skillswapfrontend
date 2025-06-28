@@ -34,7 +34,7 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/register', {
+            const res = await axios.post("https://skillswapbackend-gtr9.onrender.com/api/auth/register", {
                 name,
                 email,
                 password,
@@ -43,6 +43,7 @@ const Register = () => {
                 role: section,
                 profileImage,
             });
+
 
             if (res.status === 201) {
                 alert(res.data.message);

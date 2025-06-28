@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5000'); 
+const socket = io('https://skillswapbackend-gtr9.onrender.com'); // ✅ Updated
 
 const Chat = ({ currentUser, chatUsers }) => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
-    const [onlineUsers, setOnlineUsers] = useState([]); 
+    const [onlineUsers, setOnlineUsers] = useState([]);
     const messagesEndRef = useRef(null);
 
-    // Scroll to bottom whenever messages update
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
@@ -22,15 +21,12 @@ const Chat = ({ currentUser, chatUsers }) => {
     useEffect(() => {
         if (!currentUser) return;
 
-        // Join socket room or namespace for current user
         socket.emit('join', currentUser.id);
 
-        // Receive online users list from server
         socket.on('onlineUsers', (onlineIds) => {
             setOnlineUsers(onlineIds);
         });
 
-        // Receive new messages
         socket.on('receiveMessage', (msg) => {
             if (
                 selectedUser &&
@@ -52,7 +48,7 @@ const Chat = ({ currentUser, chatUsers }) => {
 
             try {
                 const res = await fetch(
-                    `http://localhost:5000/api/chat/history/${currentUser.id}/${selectedUser.id}`
+                    `https://skillswapbackend-gtr9.onrender.com/api/chat/history/${currentUser.id}/${selectedUser.id}` // ✅ Updated
                 );
                 const data = await res.json();
                 if (Array.isArray(data)) {
@@ -81,7 +77,7 @@ const Chat = ({ currentUser, chatUsers }) => {
 
         try {
             socket.emit('sendMessage', msg);
-            await fetch('http://localhost:5000/api/chat/save', {
+            await fetch('https://skillswapbackend-gtr9.onrender.com/api/chat/save', { // ✅ Updated
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(msg),
@@ -94,7 +90,6 @@ const Chat = ({ currentUser, chatUsers }) => {
         }
     };
 
-    // Format timestamp to HH:MM AM/PM
     const formatTime = (timestamp) => {
         const date = new Date(timestamp);
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -105,8 +100,6 @@ const Chat = ({ currentUser, chatUsers }) => {
             {/* User List */}
             <div className="w-1/3 bg-white border-r overflow-y-auto">
                 <h3 className="p-4 font-bold border-b">Matched Students</h3>
-                {/* Expect chatUsers to be array of matched student objects with
-            id, name, skill, profileImage */}
                 {chatUsers.map((user) => {
                     const isOnline = onlineUsers.includes(user.id);
                     return (
@@ -123,7 +116,6 @@ const Chat = ({ currentUser, chatUsers }) => {
                                     alt={`${user.name}'s avatar`}
                                     className="w-8 h-8 rounded-full object-cover"
                                 />
-                                {/* Online status dot */}
                                 <span
                                     className={`absolute bottom-0 right-0 block w-3 h-3 rounded-full border-2 border-white ${
                                         isOnline ? 'bg-green-500' : 'bg-gray-400'

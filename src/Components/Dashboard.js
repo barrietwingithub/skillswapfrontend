@@ -22,7 +22,7 @@ const Dashboard = () => {
             return;
         }
 
-        fetch('http://localhost:5000/api/dashboard', {
+        fetch('https://skillswapbackend-gtr9.onrender.com/api/dashboard', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -61,36 +61,36 @@ const Dashboard = () => {
     const handleSettingsChange = (e) => {
         setSettings({ ...settings, [e.target.name]: e.target.value });
     };
-const handleSaveChanges = () => {
-    const token = localStorage.getItem('token');
 
-    fetch(`https://your-hosted-backend.com/api/user/${currentUser.id}`, { // <-- change this URL
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ name: settings.name }),
-    })
-        .then(res => res.json())
-        .then(data => {
-            if (data.message) {
-                alert(data.message);
-            } else {
-                alert('Update might have failed');
-            }
+    const handleSaveChanges = () => {
+        const token = localStorage.getItem('token');
+
+        fetch(`https://skillswapbackend-gtr9.onrender.com/api/user/${currentUser.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ name: settings.name }),
         })
-        .catch(err => {
-            console.error('Update failed', err);
-            alert('Failed to update name');
-        });
-};
-
+            .then(res => res.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);
+                } else {
+                    alert('Update might have failed');
+                }
+            })
+            .catch(err => {
+                console.error('Update failed', err);
+                alert('Failed to update name');
+            });
+    };
 
     const handleDeleteAccount = () => {
         if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
             const token = localStorage.getItem('token');
-            fetch(`http://localhost:5000/api/user/${currentUser.id}`, {
+            fetch(`https://skillswapbackend-gtr9.onrender.com/api/user/${currentUser.id}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${token}`,
